@@ -34,13 +34,13 @@
           color: #fff;
         }
 		.pump-class {
-		  background-color: blue;
+		  background-color: #7FFFD4;
 		}
     </style>
 
 </head>
 
-<body>
+<body class="pump-class">
     <?php 
         $cars = array(
         array (
