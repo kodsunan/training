@@ -33,6 +33,9 @@
           background-color: #000;
           color: #fff;
         }
+		.pump-class {
+		  background-color: blue;
+		}
     </style>
 
 </head>
