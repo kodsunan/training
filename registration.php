@@ -4,8 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <title>Registration</title>
-    <link rel="stylesheet" href="style.css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
@@ -83,30 +88,47 @@ if (isset($_REQUEST['username'])){
     
 }else{
 ?>
-  <div class="form">
-    <h1>Registration</h1>
-    <form name="registration" id="register" action="" method="post">
-        <label>Name: </label>
-        <input type="text" name="rname" id="rname" placeholder="Real Name" pattern="^[ก-๏a-zA-Z\s]+$"  required /> <br>
+<section  class="container-fluid bg">
+            <section  class="row justify-content-center">
+                <section  class="col-12 col-sm-6 col-md-3">
+                    <div class="login">
+                        <h1>Registration</h1>
+                        <form name="registration" id="register" action="" method="post">
 
-        <label>Username: </label>
-        <input type="text" name="username" id="username" placeholder="Username" required /> <br>
+                            <label for="name"><i class="fas fa-file-signature"></i></label>
+                            <input type="text" name="rname" id="rname" placeholder="Real Name" pattern="^[ก-๏a-zA-Z\s]+$"  required /> <br>
 
-        <label>Password: </label>
-        <input type="password" name="password" id="password" placeholder="Password" required /> <br>
+                            <label for="username"> <i class="fas fa-user"></i> </label>
+                            <input type="text" name="username" id="username" placeholder="Username" required /> <br>
 
-        <label>Confirm Password: </label>
-        <input type="password"  name="cpassword" id="cpassword"/> <br>
+                            <label for="password"><i class="fas fa-lock"></i></label>
+                            <input type="password" name="password" id="password" placeholder="Password" required /> <br>
 
-        <label>E-Mail: </label>
-        <input type="email" name="email" id="email" placeholder="Email" required /> <br>
+                            <label for="Confirm Password" ><i class="fas fa-unlock"></i></label>
+                            <input type="password"  name="cpassword" id="cpassword"
+                            placeholder="Confirm Password" required/> <br>
 
-        <input type="reset" name="reset" id="reset" value="Reset" />
-        <input type="submit" name="submit" id="register" value="Register" />
-    </form>
-</div>
+                            <label for="E-Mail"> <i class="fas fa-envelope"></i></label>
+                            <input type="email" name="email" id="email" placeholder="Email" required /> <br>
+
+                            <!--<input type="reset" name="reset" id="reset" value="Reset" />
+
+                            <input type="submit" name="submit" id="register" value="Register" />-->
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                                
+                        </form>
+                        <p class="text-center">Have an account? <a href="dt_login.php">Log In</a> </p>
+                    </div>
+           </section>
+            </section>
+        </section>
 <?php 
 } 
 ?>
+     <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 </html>

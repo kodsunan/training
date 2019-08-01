@@ -1,7 +1,7 @@
 .selector-for-some-widget {
 	box-sizing: content-box;
   }
-.navtop {
+/* .navtop {
 	background-color: rgb(63, 187, 236);
 	height: 60px;
 	width: 100%;
@@ -13,11 +13,11 @@
 	width: 1000px;
 	height: 100%;
 }
-.navtop div h1, .navtop div a {
+.navtop div a h1, .navtop div a {
 	display: inline-flex;
 	align-items: center;
 }
-.navtop div h1 {
+.navtop div a h1 {
 	flex: 1;
 	font-size: 24px;
 	padding: 0;
@@ -25,20 +25,59 @@
 	color: #ffffff;
 	font-weight: normal;
 }
-.navtop div a {
+.navtop div a , .navtop div div ul li a {
 	padding: 0 20px;
 	text-decoration: none;
 	color: #ffffff;
 	font-weight: bold;
 }
-.navtop div a i {
+.navtop div div ul li a i {
 	padding: 2px 8px 0 0;
 }
-.navtop div a:hover {
+.navtop div a:hover , .navtop div div ul li a:hover{
 	color: #eaebed;
-}
+} */
+
+/*search box css start here*/
+	.search-sec{
+		padding: 2rem;
+	}
+	.search-slt{
+		display: block;
+		width: 100%;
+		font-size: 0.875rem;
+		line-height: 1.5;
+		color: #55595c;
+		background-color: #fff;
+		background-image: none;
+		border: 1px solid #ccc;
+		height: calc(3rem + 2px) !important;
+		border-radius:0;
+	}
+	.wrn-btn{
+		width: 100%;
+		font-size: 16px;
+		font-weight: 400;
+		text-transform: capitalize;
+		height: calc(3rem + 2px) !important;
+		border-radius:0;
+	}
+	@media (min-width: 992px){
+		.search-sec{
+			position: relative;
+			top: -114px;
+			background: rgba(121, 194, 250, 0.51);
+		}
+	}
+
+	@media (max-width: 992px){
+		.search-sec{
+			background: rgb(174, 247, 252);
+		}
+	}
+
 body.loggedin {
-	background-color: #f3f4f7;
+	background-color: #ffffff;
 	/* background: url(images/carbg.jpg);
     background-repeat: no-repeat;
 	background-size: auto; */
@@ -51,7 +90,7 @@ body.loggedin {
 	width: 1000px;
 	margin: 0 auto;
 }
-.content h1 {
+.content h1 , .main h1 , .jumbotron{
 	margin: 0;
 	padding: 25px 0;
 	font-size: 30px;
@@ -76,6 +115,39 @@ body.loggedin {
 	padding: 5px;
 	margin: 0 0 10px 0;
 }
+
+* {
+	box-sizing:border-box;
+  }
+  
+  .left {
+	background-color:rgb(189, 225, 255);
+	padding:20px;
+	float:left;
+	width:20%; /* The width is 20%, by default */
+  }
+  
+  .main {
+	background-color:#ffffff;
+	padding:20px;
+	float:left;
+	width:60%; /* The width is 60%, by default */
+  }
+  
+  .right {
+	background-color:rgb(202, 255, 203);
+	padding:20px;
+	float:left;
+	width:20%; /* The width is 20%, by default */
+  }
+  
+  /* Use a media query to add a break point at 800px: */
+  @media screen and (max-width:800px) {
+	.left, .main, .right {
+	  width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+	}
+  }
+
 .my-table {
 	width: 800px;
 	border-spacing: 0px;

@@ -36,9 +36,12 @@
     <title><?php echo Data;?></title>
 
     <link href="css/stylesheet.css" rel="stylesheet" type="text/css">
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css">
     <script src="main.js"></script> -->
     <!-- <style>
@@ -60,22 +63,65 @@
 </head>
 <body class="loggedin">
 <?php
-    if($_SESSION["username"]) { 
-?>
-        <nav class="navtop">
-			<div>
-				<h1>Welcome! 
+    if($_SESSION["username"]) { ?>
+        <!--<nav class="navtop fixed-top navtop-expand-md ">-->
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-light">
+			<div class="container">
+                <a class="navbar-brand" href="#">Cars's 
                     <?php   $sqlN = "SELECT r_name FROM `login_user` WHERE name LIKE '%".$_SESSION["username"]."%' ";
                      $res = $conn->query($sqlN);
                      $row = $res->fetch_assoc();
-                    echo $row["r_name"];  ?>. 
-                </h1>
-                <a href="profile.php" tite="Profile">My Profile</a><br><br>
-                <a href="logout.php" tite="Logout"><i class="fas fa-sign-out-alt"></i>Logout.</a><br><br>
+                    echo $row["r_name"];  ?> 
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <!-- left navigation links -->
+                    <ul class="navbar-nav mr-auto">
+
+                        <!-- active navigation link -->
+                        <li class="nav-item active">
+                            <a class="nav-link" href="data_cars.php">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+
+                        <!-- regular navigation link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+
+                        <!-- more navigation links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="data_add_cars.php">Add cars</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="data_cars_type.php">Type cars</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="data_cars_country.php">Country</a>
+                        </li>
+
+                    </ul>
+
+                    <!-- right navigation link -->
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php" tite="Profile">My Profile</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php" tite="Logout">
+                                <i class="fas fa-sign-out-alt"></i>Logout.</a>
+                        </li>
+                    </ul>          
+
+                </div>
+
             </div>
 		</nav><?php  
         
-        // #-- Search List Dropdown(car brand) && Key word (car Model) --
+     #-- Search List Dropdown(car brand) && Key word (car Model) --
 	    ini_set('display_errors', 1);
 	    error_reporting(~0);
         $strKmodel = null; $strKbrand = null;
@@ -168,177 +214,212 @@
                             (in_cars_country.cc_id = in_cars.cars_country)
                         ORDER BY in_cars.cars_id  ASC    ";
         } ?>
-        
-        <div class="content">
-			<h2><div align="center">Cars Info 2 (ver. DB)</h2>
+     #     
+     <main role="main" class="container">
+        <div class="row">
+            <div class="col">
+            <div class="jumbotron">
+                <h1 class="display-2">Cars Info 2 (ver. DB)</h1>
+                <p class="lead">This data cars is a quick exercise to illustrate how fixed to top navbar works. As you scroll, it will remain fixed to the top of your browser's viewport.</p>
+                <a class="btn btn-lg btn-primary" href="#" role="button">Get Started &raquo;</a>
+            </div>
+            </div>
+        </div><br>
+
+    <section class="search-sec">
+        <div class="container">
             <!-- #Search Form  -->
-            <form  method="get" ><div align="right">
-            <table width="599" border="1">
-                <tr>
-                    <th>เลือกยี่ห้อรถ 
-                    <!-- <select name="c_brand" id="c_brand">
-                        <option>-- Select Brand --</option>
-                        <option value="BMW" <?
-                            // if($_POST["c_brand"]=="BMW"){
-                            //     echo"selected";
-                            // }?>>- BMW</option>
-                        <option value="Chevrolet" <?if($_POST["c_brand"]=="Chevrolet"){echo"selected";}?>>- Chevrolet</option>
-                        <option value="Ferrari" <?if($_POST["c_brand"]=="Ferrari"){echo"selected";}?>>- Ferrari</option>
-                        <option value="Ford" <?if($_POST["c_brand"]=="Ford"){echo"selected";}?>>- Ford</option>
-                        <option value="Honda" <?if($_POST["c_brand"]=="Honda"){echo"selected";}?>>- Honda</option>
-                        <option value="Hyundai" <?if($_POST["c_brand"]=="Hyundai"){echo"selected";}?>>- Hyundai</option>
-                        <option value="Mazda" <?if($_POST["c_brand"]=="Mazda"){echo"selected";}?>>- Mazda</option>
-                        <option value="MG" <?if($_POST["c_brand"]=="MG"){echo"selected";}?>>- MG</option>
-                        <option value="NISSAN" <?if($_POST["c_brand"]=="NISSAN"){echo"selected";}?>>- NISSAN</option>
-                        <option value="TOYOTA".<?php echo $strKbrand;?> <?if($_POST["c_brand"]=="TOYOTA"){echo"selected";}?>>- TOYOTA</option>
-                    </select> -->
-                    <select name="c_brand" id="c_brand">
-                        <option value ="">-- Select Brand --</option>
-                        <?php
-                        $strSQL = "SELECT cb_id , cb_name FROM in_cars_brand ";
-                        $res = $conn->query($strSQL);
-                        //print_r($res);
-                        if ($res->num_rows > 0) {
-                            $i=0;  $objRes='';
+             <form  method="get" align="center"  novalidate="novalidate">
+                <div class="row">
+                <div class="col-lg-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                        <!-- <select name="c_brand" id="c_brand">
+                            <option>-- Select Brand --</option>
+                            <option value="BMW" <?
+                                // if($_POST["c_brand"]=="BMW"){
+                                //     echo"selected";
+                                // }?>>- BMW</option>
+                            <option value="Chevrolet" <?if($_POST["c_brand"]=="Chevrolet"){echo"selected";}?>>- Chevrolet</option>
+                            <option value="Ferrari" <?if($_POST["c_brand"]=="Ferrari"){echo"selected";}?>>- Ferrari</option>
+                            <option value="Ford" <?if($_POST["c_brand"]=="Ford"){echo"selected";}?>>- Ford</option>
+                            <option value="Honda" <?if($_POST["c_brand"]=="Honda"){echo"selected";}?>>- Honda</option>
+                            <option value="Hyundai" <?if($_POST["c_brand"]=="Hyundai"){echo"selected";}?>>- Hyundai</option>
+                            <option value="Mazda" <?if($_POST["c_brand"]=="Mazda"){echo"selected";}?>>- Mazda</option>
+                            <option value="MG" <?if($_POST["c_brand"]=="MG"){echo"selected";}?>>- MG</option>
+                            <option value="NISSAN" <?if($_POST["c_brand"]=="NISSAN"){echo"selected";}?>>- NISSAN</option>
+                            <option value="TOYOTA".<?php echo $strKbrand;?> <?if($_POST["c_brand"]=="TOYOTA"){echo"selected";}?>>- TOYOTA</option>
+                        </select> -->
+                            <select name="c_brand" id="c_brand" class="form-control search-slt" >
+                                <option value ="" disabled selected>-- เลือกยี่ห้อรถ --</option>
+                                <?php
+                                $strSQL = "SELECT cb_id , cb_name FROM in_cars_brand ";
+                                $res = $conn->query($strSQL);
+                                //print_r($res);
+                                if ($res->num_rows > 0) {
+                                    $i=0;  $objRes='';
 
-                            while($objRes = $res->fetch_assoc()){ ?>
-                                <option value="<?php echo $objRes["cb_id"];?>" <?php
-                                if (isset($_GET["c_brand"]) && $_GET["c_brand"]== $objRes["cb_id"]) {
-                                    echo "selected"; 
-                                    // $strSQL .= " WHERE (worker1 LIKE '%".$_POST["txtKeyword"]."%' ) ";
-                                }?>
-                                ><?php echo $objRes["cb_id"]." - ".$objRes["cb_name"];?>
-                                </option><?php
-                            }
-                        }else {
-                            echo "No data.";
-                        } ?>
-                    </select>
-                    <!-- Keyword
-                    <input name="txtKeyword" type="text" id="txtKeyword" value="<?=$_POST["txtKeyword"];?>">
-                    <input type="submit" value="Search"></th> -->
-                    ค้นหารุ่นรถยนต์ <input  type="text" name="c_model" id="c_model" value="<?php echo $strKmodel;?> " placeholder=""/>
-                    <input  type="submit" name="find" value="ค้นหา"></div>
-                </tr>
-            </table></form><?php 
-            if (true) { ?><center>
-                <!-- <h1><div align="center"> Cars Info 2 (ver. DB) </h1> -->
-                <p>   <a href="data_cars.php">หน้าแรก</a> | <a href="data_add_cars.php">เพิ่มข้อมูลรถยนต์</a> 
-                    | <a href="data_cars_type.php">ประเภทรถยนต์</a> | <a href="data_cars_country.php">ประเทศผู้ผลิตรถยนต์</a>
-                      <!-- |<a href="data_.php">เพิ่มข้อมูล</a> -->
-                </p><?php
-            } ?>
-        <table class="my-table">
-                <tr><div align="center">
-                    <th>#</th>
-                    <th>รูปภาพ</th>
-                    <th>ยี่ห้อ</th>
-                    <th>รุ่น/โมเดล</th>
-                    <th>ปี</th>
-                    <th>สี</th>
-                    <th>รายละเอียด</th>
-                    <th><strong>แก้ไข</strong></th>
-                    <th><strong>ลบ</strong></th>
-                </tr>
-            <!-- Search Car's Model  --><?php
-            $result = $conn->query($sql_string);
-            if ($result->num_rows > 0) {
-                $i=0;
-                while ($row = $result->fetch_assoc()) { ?>
-                    <tr>
-                    <td><div align="center"><?=$row["cars_id"]?></td>
-
-                    <td align="center"><!--<?=$row["cars_img"]?> --><?php 
-                        if(isset($row['cars_img']) && !empty($row['cars_img']) ){ ?>    
-                            <a href="images/<?php echo $row["cars_img"]; ?>">
-                            <img id="myImg" src='images/<?php echo $row["cars_img"]; ?>'  width='100px' height='100px' >
-                            </a></td> <?php
-                            
-                        }else{ 
-                            $filepath= 'images/noImg.png';
-                            echo '<img src="'.$filepath.'"width="100px" height="100px" ></td>'; //style="border:1px solid #333333;"
-                        } ?>
-                    </td>
-                    <td><div align="center"><!--<?=$row["cars_brand"]?> --><?php
-                            if(empty($row["cb_name"])){//cars_brand
-                                echo "N/A";
-                            }else {
-                                echo $row["cb_name"];
-                            }?>
-                    </td>
-                    <td><div align="center"><?=$row["cars_model"]?></td>
-                    <td><div align="center"><?=$row["cars_years"]?></td>
-                    <td><div align="center"><font color=<?=$row["cars_colour_code"]?>> 
-                                        <?= $row["cars_colour"] ?> </font> </td>
-                    <td> <!-- Details Cars (Type , Country , Engine , Price)-->     
-                        <ul><?php  echo  "
-                            <li> <b>ประเภทรถ : </b>"; ?><?php
-                                if(empty($row["ct_name"])){//cars_type
-                                    echo "N/A";
+                                    while($objRes = $res->fetch_assoc()){ ?>
+                                        <option value="<?php echo $objRes["cb_id"];?>" <?php
+                                        if (isset($_GET["c_brand"]) && $_GET["c_brand"]== $objRes["cb_id"]) {
+                                            echo "selected"; 
+                                            // $strSQL .= " WHERE (worker1 LIKE '%".$_POST["txtKeyword"]."%' ) ";
+                                        }?>
+                                        ><?php echo $objRes["cb_id"]." - ".$objRes["cb_name"];?>
+                                        </option><?php
+                                    }
                                 }else {
-                                    echo $row["ct_name"];
-                                } ?> 
-                            </li> <?php  echo "
-                            <li> <b>ประเทศ : </b>"; ?><?php
-                                if(empty($row["cc_name"])){//cars_country
-                                    echo "N/A";
-                                }else {
-                                    echo $row["cc_name"];
+                                    echo "No data.";
                                 } ?>
-                            </li> <?php echo "
-                            <li> <b>ขนาดเครื่องยนต์ : </b>"; ?><?php
-                                if(empty($row["cars_engine"])){
-                                    echo "N/A";
-                                }else {
-                                    echo $row["cars_engine"]." C.C.";
-                                } ?>
-                            </li> <?php echo "
-                            <li> <b>ราคา : </b>" ; ?><?php
-                                if(empty($row["cars_price"])){
-                                    echo "N/A";
-                                }else {
-                                    echo $row["cars_price"]." บาท";
-                                } ?>
-                            </li>
-                        </ul>
-                    </td>
-                    <td align="center"> <a href="data_edit.php?id=<?php echo $row["cars_id"]; ?>" >Edit</a> </td>
-                    <td align="center"> <a href="data_delete.php?id=<?php echo $row["cars_id"]; ?>" target="_blank">Delete</a> </td></tr>
-                    <!-- The Modal -->
-                    <div id="myModal" class="modal">
-                        <span class="close">&times;</span>
-                        <img class="modal-content" id="img01">
-                        <div id="caption"></div>
-                    </div>
-                    <script>
-                        // Get the modal
-                            var modal = document.getElementById("myModal");
-                        // Get the image and insert it inside the modal - use its "alt" text as a caption
-                            var img = document.getElementById("myImg");
-                            var modalImg = document.getElementById("img01");
-                            var captionText = document.getElementById("caption");
-                            img.onclick = function(){
-                                modal.style.display = "block";
-                                modalImg.src = this.src;
-                                captionText.innerHTML = this.alt;
-                            }
-                        // Get the <span> element that closes the modal
-                            var span = document.getElementsByClassName("close")[0];
-                        // When the user clicks on <span> (x), close the modal
-                            span.onclick = function() { 
-                                modal.style.display = "none";
-                            }
-                    </script><?php 
-                } ?> 
-        </table> 
-           <?php
-            }else {
-                echo "No data Select.";
-            } ?> 
+                            </select>
+                        </div>
+                        <!-- Keyword
+                        <input name="txtKeyword" type="text" id="txtKeyword" value="<?=$_POST["txtKeyword"];?>">
+                        <input type="submit" value="Search"></th> -->
+                        <div class="col-lg-1 col-md-1 col-sm-12 p-0">
+                            ค้นรุ่นรถยนต์
+                         </div>
+                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                            <input class="form-control search-slt" type="text" name="c_model" id="c_model" value="<?php echo $strKmodel;?> " placeholder="Enter Car's Model ">
+                         </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                            <button class="btn btn-outline-primary btn-rounded btn-sm my-0 waves-effect waves-light wrn-btn"  type="submit" name="find">Search</button>
+                        </div>
+                     </div>
+                </div></div>  
+            </form>
         </div>
+    </section><?php 
+                if (true) { ?><center>
+                    <!--<h1><div align="center"> Cars Info 2 (ver. DB) </h1> 
+                    <p>   <a href="data_cars.php">หน้าแรก</a> | <a href="data_add_cars.php">เพิ่มข้อมูลรถยนต์</a> 
+                        | <a href="data_cars_type.php">ประเภทรถยนต์</a> | <a href="data_cars_country.php">ประเทศผู้ผลิตรถยนต์</a>
+                        <!-- |<a href="data_.php">เพิ่มข้อมูล</a> 
+                    </p>-->
+                    <?php
+                } ?>
 
-        
-         <?php
+             <div class="table-responsive">
+                <table class="my-table table-striped w-auto">
+                    <thead>
+                        <tr align="center">
+                            <th scope="col">#</th>
+                            <th scope="col">รูปภาพ</th>
+                            <th scope="col">ยี่ห้อ</th>
+                            <th scope="col">รุ่น/โมเดล</th>
+                            <th scope="col">ปี</th>
+                            <th scope="col">สี</th>
+                            <th scope="col">รายละเอียด</th>
+                            <th scope="col"><strong>แก้ไข</strong></th>
+                            <th scope="col"><strong>ลบ</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Search Car's Model  --><?php
+                    $result = $conn->query($sql_string);
+                    if ($result->num_rows > 0) {
+                        $i=0;
+                        while ($row = $result->fetch_assoc()) { ?>
+                            <tr>
+                                <td scope="row" align="center"><?=$row["cars_id"]?></td>
+                                <td align="center"><!--<?=$row["cars_img"]?> --><?php 
+                                    if(isset($row['cars_img']) && !empty($row['cars_img']) ){ ?>    
+                                        <a href="images/<?php echo $row["cars_img"]; ?>">
+                                        <img id="myImg" src='images/<?php echo $row["cars_img"]; ?>'  width='100px' height='100px' >
+                                        </a></td> <?php
+                                        
+                                    }else{ 
+                                        $filepath= 'images/noImg.png';
+                                        echo '<img src="'.$filepath.'"width="100px" height="100px" ></td>'; //style="border:1px solid #333333;"
+                                    } ?>
+                                </td>
+                                <td><div align="center"><!--<?=$row["cars_brand"]?> --><?php
+                                        if(empty($row["cb_name"])){//cars_brand
+                                            echo "N/A";
+                                        }else {
+                                            echo $row["cb_name"];
+                                        }?>
+                                </td>
+                                <td><div align="center"><?=$row["cars_model"]?></td>
+                                <td><div align="center"><?=$row["cars_years"]?></td>
+                                <td><div align="center"><font color=<?=$row["cars_colour_code"]?>> 
+                                                    <?= $row["cars_colour"] ?> </font> </td>
+                                <td > <!-- Details Cars (Type , Country , Engine , Price)-->  <br>   
+                                    <ul><?php  echo  "
+                                        <li> <b>ประเภทรถ : </b>"; ?><?php
+                                            if(empty($row["ct_name"])){//cars_type
+                                                echo "N/A";
+                                            }else {
+                                                echo $row["ct_name"];
+                                            } ?> 
+                                        </li> <?php  echo "
+                                        <li> <b>ประเทศ : </b>"; ?><?php
+                                            if(empty($row["cc_name"])){//cars_country
+                                                echo "N/A";
+                                            }else {
+                                                echo $row["cc_name"];
+                                            } ?>
+                                        </li> <?php echo "
+                                        <li> <b>ขนาดเครื่องยนต์ : </b>"; ?><?php
+                                            if(empty($row["cars_engine"])){
+                                                echo "N/A";
+                                            }else {
+                                                echo $row["cars_engine"]." C.C.";
+                                            } ?>
+                                        </li> <?php echo "
+                                        <li> <b>ราคา : </b>" ; ?><?php
+                                            if(empty($row["cars_price"])){
+                                                echo "N/A";
+                                            }else {
+                                                echo $row["cars_price"]." บาท";
+                                            } ?>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <td align="center"> <a href="data_edit.php?id=<?php echo $row["cars_id"]; ?>" >Edit</a> </td>
+                                <td align="center"> <a href="data_delete.php?id=<?php echo $row["cars_id"]; ?>" target="_blank">Delete</a> </td>
+                            </tr>
+                            <!-- The Modal -->
+                            <div id="myModal" class="modal">
+                                <span class="close">&times;</span>
+                                <img class="modal-content" id="img01">
+                                <div id="caption"></div>
+                            </div>
+                            <script><!-- # JavaScript for Modal Image -->
+                                // Get the modal
+                                    var modal = document.getElementById("myModal");
+                                // Get the image and insert it inside the modal - use its "alt" text as a caption
+                                    var img = document.getElementById("myImg");
+                                    var modalImg = document.getElementById("img01");
+                                    var captionText = document.getElementById("caption");
+                                    img.onclick = function(){
+                                        modal.style.display = "block";
+                                        modalImg.src = this.src;
+                                        captionText.innerHTML = this.alt;
+                                    }
+                                // Get the <span> element that closes the modal
+                                    var span = document.getElementsByClassName("close")[0];
+                                // When the user clicks on <span> (x), close the modal
+                                    span.onclick = function() { 
+                                        modal.style.display = "none";
+                                    }
+                            </script><?php 
+                        } ?> 
+                    </tbody>
+                </table> 
+            </div><?php
+                    }else {
+                        echo "No data Select.";
+                    } ?> 
+        </div>
+     </main>
+     <footer class="container mt-4">
+        <div class="row">
+            <div class="col">
+            <p class="text-center">Design by <a href="#">Zetiz Labs</a></p>
+            </div>
+        </div>
+     </footer> <?php
     }else{
         echo "<center><h1>Please login first! .</h1>";?>
         Click here to 
@@ -378,7 +459,7 @@
          }else {
              echo "No data Select.";
          }
-    ?> -->
+?> -->
 
     </center>
 
