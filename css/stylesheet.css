@@ -328,3 +328,36 @@ a{
 	  width: 100%;
 	}
   }
+
+  .btn {
+    display: inline-block;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+  }
+
+.btn.aqua-gradient {
+    transition: .5s ease;
+    color: #fff;
+}
+.btn-sm {
+	line-height: 1.5;
+}
+.btn.btn-sm {
+    padding: .5rem 1.6rem;
+    font-size: .64rem;
+}
+.btn:hover {
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15);
+	outline: 0;
+	text-decoration: none;
+}
+.btn-rounded {
+    border-radius: 10em;
+}
+  .aqua-gradient {
+    background: linear-gradient(40deg,#2096ff,#05ffa3) !important;
+}
+.waves-effect {
+	position: relative;
+}

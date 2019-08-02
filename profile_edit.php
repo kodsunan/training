@@ -126,7 +126,9 @@
                                         <td>Re-enter your new password:</td>
                                         <td><input type="password" size="10" name="confirmnewpassword"></td></tr>
                                 </table><hr>
-                                <p><input type="submit" value="Update">
+                                <p>
+                                <!--<input type="submit" value="Update">-->
+                                <button class="btn aqua-gradient btn-rounded btn-sm my-0 waves-effect waves-light" type="submit">Update</button>
 
                             <!-- // <label>Name</label>
                                 // <input id="input-field" onkeyup="validate();" class="form-control" type="text" 
